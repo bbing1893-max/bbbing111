@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>忘憂禾麴 - 天然手作米麴甘酒</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind Configuration for Custom Colors & Fonts -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#fff7ed',
+                            100: '#ffedd5',
+                            200: '#fed7aa',
+                            300: '#fdba74',
+                            400: '#fb923c',
+                            500: '#f97316',
+                            600: '#ea580c',
+                            700: '#c2410c',
+                            850: '#842507',
+                            900: '#7c2d12',
+                            950: '#431407',
+                            vibrant: '#FF5722',
+                            bright: '#FF6F00',
+                            sun: '#FFB300'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'Noto Sans TC', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Custom Styles for Parallax & Glassmorphism -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap');
+        
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #431407;
+            color: #fff7ed;
+            overflow-x: hidden;
+        }
+
+        /* Glassmorphism card effects */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+        }
+
+        .glass-dark {
+            background: rgba(67, 20, 7, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(251, 146, 60, 0.2);
+        }
+
+        /* Custom Parallax / Float Animations */
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(3deg); }
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 25px rgba(255, 111, 0, 0.6); }
+            50% { box-shadow: 0 0 50px rgba(255, 146, 60, 0.9); }
+        }
+
+        .animate-float {
+            animation: floatSlow 6s ease-in-out infinite;
+        }
+
+        .animate-pulse-glow {
+            animation: pulseGlow 3s ease-in-out infinite;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #431407;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #f97316;
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ea580c;
+        }
+    </style>
+</head>
+<body class="bg-brand-950 text-brand-50 selection:bg-brand-500 selection:text-white">
+
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-brand-bright to-brand-sun flex items-center justify-center text-white font-black text-xl shadow-lg shadow-brand-500/50">
+                        麴
+                    </div>
+                    <span class="text-2xl font-black tracking-wider text-white">忘憂禾麴</span>
+                </div>
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#about" class="text-brand-100 hover:text-white font-medium transition">品牌故事</a>
+                    <a href="#features" class="text-brand-100 hover:text-white font-medium transition">核心優勢</a>
+                    <a href="#products" class="text-brand-100 hover:text-white font-medium transition">系列產品</a>
+                    <a href="#recipe" class="text-brand-100 hover:text-white font-medium transition">飲用提案</a>
+                    <a href="#reviews" class="text-brand-100 hover:text-white font-medium transition">顧客好評</a>
+                </div>
+                <!-- CTA Button -->
+                <div>
+                    <button onclick="openModal('購買洽詢')" class="bg-gradient-to-r from-brand-bright to-brand-sun text-brand-950 font-bold px-6 py-2.5 rounded-full shadow-lg hover:scale-105 active:scale-95 transition transform duration-300">
+                        立即購買
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative min-h-screen flex items-center justify-center bg-gradient-to-b from-brand-900 via-brand-600 to-brand-vibrant overflow-hidden pt-20">
+        <!-- Parallax Background Elements -->
+        <div class="absolute inset-0 opacity-20 pointer-events-none">
+            <div class="absolute top-1/4 left-10 w-96 h-96 rounded-full bg-brand-sun blur-3xl animate-pulse"></div>
+            <div class="absolute bottom-10 right-10 w-[500px] h-[500px] rounded-full bg-orange-400 blur-3xl animate-pulse" style="animation-duration: 5s;"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full py-20">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Content -->
+                <div class="lg:col-span-7 space-y-8" data-aos="fade-right" data-aos-duration="1000">
+                    <div class="inline-flex items-center space-x-2 px-4 py-2 rounded-full glass-card text-brand-100 text-sm font-semibold tracking-wide">
+                        <span class="w-2.5 h-2.5 rounded-full bg-brand-sun animate-ping"></span>
+                        <span>100% 天然米麴發酵 ‧ 無添加糖 ‧ 溫潤滋養</span>
+                    </div>
+                    
+                    <h1 class="text-5xl sm:text-7xl font-black tracking-tight text-white leading-tight">
+                        喝得到的溫柔<br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-200 via-white to-brand-sun drop-shadow-md">忘憂禾麴</span> 甘酒
+                    </h1>
+                    
+                    <p class="text-lg sm:text-xl text-brand-100 max-w-xl font-light leading-relaxed">
+                        古法工藝結合現代科研，嚴選優質在來米與專利米麴菌發酵。富含天然葡萄糖、維生素B群與必需胺基酸，喚醒身體深處的輕盈與活力。
+                    </p>
+
+                    <div class="flex flex-wrap gap-4 pt-4">
+                        <button onclick="openModal('立即搶購')" class="bg-white text-brand-900 font-extrabold px-8 py-4 rounded-full shadow-2xl hover:bg-brand-50 hover:scale-105 transition transform duration-300 flex items-center space-x-3 text-lg">
+                            <span>立即搶購體驗</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                        <a href="#about" class="glass-card text-white font-semibold px-8 py-4 rounded-full hover:bg-white/20 transition duration-300 flex items-center space-x-2 text-lg">
+                            <span>了解更多故事</span>
+                            <i class="fa-solid fa-chevron-down text-sm"></i>
+                        </a>
+                    </div>
+
+                    <!-- Trust indicators -->
+                    <div class="grid grid-cols-3 gap-6 pt-8 border-t border-white/20">
+                        <div>
+                            <p class="text-3xl font-black text-white">0%</p>
+                            <p class="text-sm text-brand-200 font-medium">酒精成分 (全家可飲)</p>
+                        </div>
+                        <div>
+                            <p class="text-3xl font-black text-white">100%</p>
+                            <p class="text-sm text-brand-200 font-medium">天然無添加糖</p>
+                        </div>
+                        <div>
+                            <p class="text-3xl font-black text-white">36倍</p>
+                            <p class="text-sm text-brand-200 font-medium">營養精華吸收力</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Visual / Floating Bottle Mockup -->
+                <div class="lg:col-span-5 relative flex justify-center" data-aos="fade-left" data-aos-duration="1200">
+                    <div class="relative w-72 sm:w-80 h-[480px] sm:h-[540px] rounded-[40px] bg-gradient-to-b from-orange-400 via-brand-600 to-brand-900 p-3 shadow-2xl animate-float glass-card animate-pulse-glow">
+                        <div class="w-full h-full rounded-[32px] bg-gradient-to-b from-brand-900/80 to-brand-950 flex flex-col items-center justify-between p-8 text-center relative overflow-hidden">
+                            <!-- Glow internal circle -->
+                            <div class="absolute -top-20 -right-20 w-48 h-48 bg-brand-sun rounded-full blur-2xl opacity-60"></div>
+                            
+                            <!-- Bottle Header tag -->
+                            <div class="z-10 bg-brand-bright/30 border border-brand-sun/50 px-4 py-1 rounded-full text-xs font-bold text-brand-100 tracking-wider">
+                                嚴選職人手作
+                            </div>
+
+                            <!-- Bottle Center Icon & Typography -->
+                            <div class="z-10 space-y-4 my-auto">
+                                <div class="w-24 h-24 mx-auto rounded-full bg-gradient-to-tr from-brand-sun to-white flex items-center justify-center shadow-xl">
+                                    <span class="text-brand-950 font-black text-4xl">禾</span>
+                                </div>
+                                <div>
+                                    <h3 class="text-2xl font-black text-white tracking-widest">忘憂禾麴</h3>
+                                    <p class="text-sm text-brand-200 font-medium mt-1">頂級米麴甘酒 750ml</p>
+                                </div>
+                            </div>
+
+                            <!-- Bottle Footer tag -->
+                            <div class="z-10 w-full bg-white/10 backdrop-blur-md py-3 rounded-2xl border border-white/20">
+                                <span class="text-xs text-brand-100 font-semibold">自然甘甜 ‧ 溫潤養生</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Floating Badge -->
+                    <div class="absolute -bottom-6 -left-6 glass-card px-6 py-4 rounded-2xl shadow-xl flex items-center space-x-3 animate-bounce" style="animation-duration: 4s;">
+                        <div class="w-10 h-10 rounded-full bg-brand-sun flex items-center justify-center text-brand-950 font-bold text-lg">
+                            <i class="fa-solid fa-mug-hot"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs text-brand-200 font-medium">職人推薦</p>
+                            <p class="text-sm font-bold text-white">溫熱喝・更香醇</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+    <!-- High-Impact Banner Section -->
+    <section class="relative py-24 bg-gradient-to-r from-brand-bright via-brand-500 to-orange-600 overflow-hidden text-brand-950">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center" data-aos="zoom-in" data-aos-duration="800">
+            <span class="inline-block bg-brand-950/20 text-brand-950 font-black text-sm uppercase tracking-widest px-4 py-1.5 rounded-full mb-6">
+                ✨ 喝的點滴精華
+            </span>
+            <h2 class="text-4xl sm:text-6xl font-black tracking-tight mb-6 text-white drop-shadow-md">
+                「用一杯甘酒，找回內心的純粹與寧靜」
+            </h2>
+            <p class="text-xl text-brand-50 max-w-3xl mx-auto font-medium mb-10 leading-relaxed">
+                在日本被譽為「喝的點滴」，忘憂禾麴不含酒精、不添加人工糖分，利用米麴菌自然分解澱粉產生的天然葡萄糖，為您帶來無負擔的溫暖能量。
+            </p>
+            <div class="flex justify-center gap-4">
+                <button onclick="openModal('了解發酵工藝')" class="bg-brand-950 text-white font-bold px-8 py-4 rounded-full shadow-xl hover:bg-brand-900 hover:scale-105 transition transform duration-300">
+                    探索發酵奧秘
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brand Story & About Section -->
+    <section id="about" class="py-28 bg-brand-950 relative overflow-hidden">
+        <div class="absolute top-1/2 left-0 w-72 h-72 bg-brand-600/20 rounded-full blur-3xl pointer-events-none"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-20" data-aos="fade-up">
+                <span class="text-brand-sun font-bold uppercase tracking-widest text-sm">ORIGIN & CRAFT</span>
+                <h2 class="text-4xl sm:text-5xl font-black text-white mt-2 mb-4">堅持 72 小時控溫發酵</h2>
+                <div class="w-20 h-1.5 bg-brand-sun mx-auto rounded-full mb-6"></div>
+                <p class="text-brand-200 text-lg">
+                    從選米、洗米、蒸煮到種麴與溫控發酵，每一個環節都凝聚著職人對品質的極致追求。
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="glass-card p-8 rounded-3xl relative overflow-hidden group hover:border-brand-sun transition duration-500" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-brand-bright to-brand-sun flex items-center justify-center text-brand-950 text-2xl font-black mb-6 shadow-lg group-hover:scale-110 transition duration-300">
+                        <i class="fa-solid fa-seedling"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3">01. 嚴選優質好米</h3>
+                    <p class="text-brand-200 leading-relaxed font-light">
+                        堅持採用在地優質在來米，米粒飽滿、澱粉質均勻，為醱酵提供最完美的天然基底。
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="glass-card p-8 rounded-3xl relative overflow-hidden group hover:border-brand-sun transition duration-500" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-brand-bright to-brand-sun flex items-center justify-center text-brand-950 text-2xl font-black mb-6 shadow-lg group-hover:scale-110 transition duration-300">
+                        <i class="fa-solid fa-fire-burner"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3">02. 專利麴菌種</h3>
+                    <p class="text-brand-200 leading-relaxed font-light">
+                        引入日本百年工藝結合在地氣候研發的專利米麴菌，活性高、轉化效率卓越。
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="glass-card p-8 rounded-3xl relative overflow-hidden group hover:border-brand-sun transition duration-500" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-brand-bright to-brand-sun flex items-center justify-center text-brand-950 text-2xl font-black mb-6 shadow-lg group-hover:scale-110 transition duration-300">
+                        <i class="fa-solid fa-heart-pulse"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3">03. 完美溫潤口感</h3>
+                    <p class="text-brand-200 leading-relaxed font-light">
+                        不添加一滴人工糖蜜，完全依靠天然糖化作用釋放濃郁甘甜，口感滑順、回甘悠長。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Features Section -->
+    <section id="features" class="py-28 bg-gradient-to-b from-brand-950 via-brand-900 to-brand-950 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                
+                <div class="space-y-8" data-aos="fade-right">
+                    <span class="text-brand-sun font-bold uppercase tracking-widest text-sm">HEALTH BENEFITS</span>
+                    <h2 class="text-4xl sm:text-5xl font-black text-white leading-tight">
+                        為什麼每天都需要<br>來一杯忘憂禾麴？
+                    </h2>
+                    <p class="text-brand-200 font-light leading-relaxed">
+                        米麴甘酒含有豐富的維生素B群、胺基酸與膳食纖維，是現代忙碌族群調整體質、養顏美容與日常滋補的最佳天然飲品。
+                    </p>
+
+                    <div class="space-y-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 rounded-full bg-brand-500/30 border border-brand-sun flex items-center justify-center text-brand-sun shrink-0 mt-1">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-white">天然葡萄糖與B群</h4>
+                                <p class="text-brand-200 text-sm mt-1">迅速為身體補充能量，告別午後倦怠與疲勞。</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 rounded-full bg-brand-500/30 border border-brand-sun flex items-center justify-center text-brand-sun shrink-0 mt-1">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-white">溫和呵護消化道</h4>
+                                <p class="text-brand-200 text-sm mt-1">豐富的酵素與寡糖，幫助維持消化道機能，氣色自然紅潤。</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 rounded-full bg-brand-500/30 border border-brand-sun flex items-center justify-center text-brand-sun shrink-0 mt-1">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-white">老少咸宜、無酒精</h4>
+                                <p class="text-brand-200 text-sm mt-1">雖名為甘酒，但完全不含酒精，孕哺媽咪、長輩與小孩皆可安心享用。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Big Interactive Graphic Box -->
+                <div class="relative" data-aos="fade-left">
+                    <div class="relative w-full h-[450px] rounded-3xl bg-gradient-to-tr from-brand-bright via-brand-600 to-orange-500 p-1 shadow-2xl">
+                        <div class="w-full h-full bg-brand-950/90 rounded-[22px] p-8 flex flex-col justify-center items-center text-center relative overflow-hidden">
+                            <!-- Background glow -->
+                            <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-brand-600/30 via-transparent to-transparent"></div>
+                            
+                            <div class="w-24 h-24 rounded-full bg-gradient-to-r from-brand-sun to-brand-bright flex items-center justify-center text-brand-950 text-4xl shadow-2xl mb-6 animate-pulse">
+                                <i class="fa-solid fa-glass-water"></i>
+                            </div>
+
+                            <h3 class="text-3xl font-black text-white mb-3">純粹・天然・無負擔</h3>
+                            <p class="text-brand-200 max-w-sm mb-8">
+                                每一口都是大地的恩賜與時間的發酵結晶。
+                            </p>
+
+                            <button onclick="openModal('營養標示與檢驗')" class="bg-gradient-to-r from-brand-bright to-brand-sun text-brand-950 font-bold px-8 py-3.5 rounded-full shadow-lg hover:scale-105 transition transform duration-300">
+                                查看檢驗報告
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Series Section -->
+    <section id="products" class="py-28 bg-brand-950 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-20" data-aos="fade-up">
+                <span class="text-brand-sun font-bold uppercase tracking-widest text-sm">PRODUCT SERIES</span>
+                <h2 class="text-4xl sm:text-5xl font-black text-white mt-2 mb-4">忘憂禾麴 經典系列</h2>
+                <div class="w-20 h-1.5 bg-brand-sun mx-auto rounded-full mb-6"></div>
+                <p class="text-brand-200 text-lg">
+                    滿足不同風味與生活場景的匠心之作。
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Product 1 -->
+                <div class="glass-card rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl hover:border-brand-sun transition duration-500 flex flex-col" data-aos="fade-up" data-aos-delay="100">
+                    <div class="h-64 bg-gradient-to-b from-brand-600 to-brand-900 flex items-center justify-center relative p-6">
+                        <div class="absolute top-4 right-4 bg-brand-sun text-brand-950 text-xs font-black px-3 py-1 rounded-full">
+                            人氣首選
+                        </div>
+                        <div class="w-32 h-48 rounded-2xl bg-gradient-to-b from-orange-400 to-brand-800 shadow-2xl flex flex-col items-center justify-center text-center p-4">
+                            <span class="text-white font-black text-lg">原味經典</span>
+                            <span class="text-xs text-brand-100 mt-1">Original</span>
+                        </div>
+                    </div>
+                    <div class="p-8 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-2xl font-bold text-white mb-2">原味手作甘酒</h3>
+                            <p class="text-brand-200 text-sm mb-6 font-light">
+                                濃郁米香、溫潤入喉，最純正的天然甘甜風味，適合所有初次體驗的朋友。
+                            </p>
+                        </div>
+                        <div class="flex items-center justify-between pt-4 border-t border-white/10">
+                            <div>
+                                <span class="text-xs text-brand-300 block">750ml / 瓶</span>
+                                <span class="text-2xl font-black text-white">NT$ 380</span>
+                            </div>
+                            <button onclick="openModal('購買 原味手作甘酒')" class="bg-gradient-to-r from-brand-bright to-brand-sun text-brand-950 font-bold px-5 py-2.5 rounded-full hover:scale-105 transition">
+                                加入購物車
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="glass-card rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl hover:border-brand-sun transition duration-500 flex flex-col" data-aos="fade-up" data-aos-delay="200">
+                    <div class="h-64 bg-gradient-to-b from-orange-500 to-brand-900 flex items-center justify-center relative p-6">
+                        <div class="absolute top-4 right-4 bg-amber-300 text-brand-950 text-xs font-black px-3 py-1 rounded-full">
+                            限定特調
+                        </div>
+                        <div class="w-32 h-48 rounded-2xl bg-gradient-to-b from-amber-500 to-brand-800 shadow-2xl flex flex-col items-center justify-center text-center p-4">
+                            <span class="text-white font-black text-lg">紅藜麥麴</span>
+                            <span class="text-xs text-brand-100 mt-1">Red Quinoa</span>
+                        </div>
+                    </div>
+                    <div class="p-8 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-2xl font-bold text-white mb-2">紅藜麥雙效甘酒</h3>
+                            <p class="text-brand-200 text-sm mb-6 font-light">
+                                結合超級食物紅藜麥，營養升級，口感層次豐富，帶有淡淡穀物清香。
+                            </p>
+                        </div>
+                        <div class="flex items-center justify-between pt-4 border-t border-white/10">
+                            <div>
+                                <span class="text-xs text-brand-300 block">750ml / 瓶</span>
+                                <span class="text-2xl font-black text-white">NT$ 420</span>
+                            </div>
+                            <button onclick="openModal('購買 紅藜麥雙效甘酒')" class="bg-gradient-to-r from-brand-bright to-brand-sun text-brand-950 font-bold px-5 py-2.5 rounded-full hover:scale-105 transition">
+                                加入購物車
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="glass-card rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl hover:border-brand-sun transition duration-500 flex flex-col" data-aos="fade-up" data-aos-delay="300">
+                    <div class="h-64 bg-gradient-to-b from-brand-700 to-brand-950 flex items-center justify-center relative p-6">
+                        <div class="absolute top-4 right-4 bg-orange-400 text-brand-950 text-xs font-black px-3 py-1 rounded-full">
+                            禮盒首選
+                        </div>
+                        <div class="w-32 h-48 rounded-2xl bg-gradient-to-b from-orange-600 to-brand-900 shadow-2xl flex flex-col items-center justify-center text-center p-4">
+                            <span class="text-white font-black text-lg">忘憂禮盒</span>
+                            <span class="text-xs text-brand-100 mt-1">Gift Set</span>
+                        </div>
+                    </div>
+                    <div class="p-8 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-2xl font-bold text-white mb-2">雙瓶裝尊榮禮盒</h3>
+                            <p class="text-brand-200 text-sm mb-6 font-light">
+                                內含原味與紅藜麥各一瓶，搭配精美質感燙金禮袋，送禮大方、心意滿分。
+                            </p>
+                        </div>
+                        <div class="flex items-center justify-between pt-4 border-t border-white/10">
+                            <div>
+                                <span class="text-xs text-brand-300 block">雙入禮盒裝</span>
+                                <span class="text-2xl font-black text-white">NT$ 850</span>
+                            </div>
+                            <button onclick="openModal('購買 雙瓶裝尊榮禮盒')" class="bg-gradient-to-r from-brand-bright to-brand-sun text-brand-950 font-bold px-5 py-2.5 rounded-full hover:scale-105 transition">
+                                加入購物車
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Usage Suggestions Section -->
+    <section id="recipe" class="py-28 bg-gradient-to-t from-brand-950 via-brand-900 to-brand-950 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-20" data-aos="fade-up">
+                <span class="text-brand-sun font-bold uppercase tracking-widest text-sm">SERVING IDEAS</span>
+                <h2 class="text-4xl sm:text-5xl font-black text-white mt-2 mb-4">百變喝法・美味隨心</h2>
+                <div class="w-20 h-1.5 bg-brand-sun mx-auto rounded-full mb-6"></div>
+                <p class="text-brand-200 text-lg">
+                    不只是單喝，甘酒更能為您的日常飲食創造無限可能。
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Idea 1 -->
+                <div class="glass-card p-8 rounded-3xl" data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-4xl mb-4">🔥</div>
+                    <h3 class="text-xl font-bold text-white mb-2">溫熱暖心飲</h3>
+                    <p class="text-brand-200 text-sm font-light leading-relaxed">
+                        倒入杯中以微波或小火加熱至 60°C 左右（切勿大滾），溫溫喝香氣更濃郁，暖胃又暖心。
+                    </p>
+                </div>
+                <!-- Idea 2 -->
+                <div class="glass-card p-8 rounded-3xl" data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-4xl mb-4">🧊</div>
+                    <h3 class="text-xl font-bold text-white mb-2">冰涼沁爽特調</h3>
+                    <p class="text-brand-200 text-sm font-light leading-relaxed">
+                        加入少許鮮奶、豆漿或是檸檬汁調勻並加入冰塊，就是炎炎夏日的健康消暑聖品。
+                    </p>
+                </div>
+                <!-- Idea 3 -->
+                <div class="glass-card p-8 rounded-3xl" data-aos="fade-up" data-aos-delay="300">
+                    <div class="text-4xl mb-4">🥣</div>
+                    <h3 class="text-xl font-bold text-white mb-2">天然代糖優格</h3>
+                    <p class="text-brand-200 text-sm font-light leading-relaxed">
+                        淋在無糖優格或燕麥粥上取代人工糖漿，增加層次口感，同時補充益菌與能量。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials / Customer Reviews Section -->
+    <section id="reviews" class="py-28 bg-brand-950 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-20" data-aos="fade-up">
+                <span class="text-brand-sun font-bold uppercase tracking-widest text-sm">TESTIMONIALS</span>
+                <h2 class="text-4xl sm:text-5xl font-black text-white mt-2 mb-4">真實顧客好評迴響</h2>
+                <div class="w-20 h-1.5 bg-brand-sun mx-auto rounded-full mb-6"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="glass-card p-8 rounded-3xl relative" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex text-amber-400 mb-4 space-x-1">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-brand-100 text-sm font-light mb-6 leading-relaxed">
+                        「每天早上加熱喝一杯，真的非常有感！完全沒有市售醱酵飲品的奇怪酸味，只有很純粹的米香與天然甘甜，大推原味！」
+                    </p>
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-full bg-brand-sun flex items-center justify-center text-brand-950 font-bold">雅</div>
+                        <div>
+                            <p class="text-white font-bold text-sm">林小姐</p>
+                            <p class="text-brand-300 text-xs">金融業・定期訂閱戶</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card p-8 rounded-3xl relative" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex text-amber-400 mb-4 space-x-1">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-brand-100 text-sm font-light mb-6 leading-relaxed">
+                        「孕期中胃口常常不好，喝忘憂禾麴不但好入口又營養，連醫生都說成分很天然單純，全家人現在都跟著一起喝！」
+                    </p>
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-full bg-brand-sun flex items-center justify-center text-brand-950 font-bold">涵</div>
+                        <div>
+                            <p class="text-white font-bold text-sm">張太太</p>
+                            <p class="text-brand-300 text-xs">新手媽媽</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card p-8 rounded-3xl relative" data-aos="fade-up" data-aos-delay="300">
+                    <div class="flex text-amber-400 mb-4 space-x-1">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-brand-100 text-sm font-light mb-6 leading-relaxed">
+                        「包裝非常有質感，買了雙瓶禮盒送長輩，長輩收到非常喜歡，直說口感滑順不甜膩，已經回購第三次了！」
+                    </p>
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-full bg-brand-sun flex items-center justify-center text-brand-950 font-bold">志</div>
+                        <div>
+                            <p class="text-white font-bold text-sm">陳先生</p>
+                            <p class="text-brand-300 text-xs">設計總監</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Banner -->
+    <section class="py-24 bg-gradient-to-r from-brand-bright via-orange-500 to-brand-600 relative overflow-hidden text-brand-950 text-center">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10" data-aos="zoom-in">
+            <h2 class="text-4xl sm:text-6xl font-black text-white mb-6 drop-shadow-md">
+                準備好迎接每日的輕盈與活力了嗎？
+            </h2>
+            <p class="text-xl text-brand-50 max-w-2xl mx-auto font-medium mb-10 leading-relaxed">
+                立即體驗職人手作的純淨甘酒，給自己與家人最溫柔的日常滋養。
+            </p>
+            <button onclick="openModal('立即搶購體驗')" class="bg-brand-950 text-white font-extrabold px-10 py-5 rounded-full shadow-2xl hover:bg-brand-900 hover:scale-105 transition transform duration-300 text-lg">
+                立即訂購・享受純粹甘甜
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brand-950 text-brand-300 py-16 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 rounded-full bg-brand-sun flex items-center justify-center text-brand-950 font-black">麴</div>
+                        <span class="text-xl font-black text-white">忘憂禾麴</span>
+                    </div>
+                    <p class="text-sm font-light text-brand-300 leading-relaxed">
+                        專注於傳統發酵工藝與現代健康生活的完美結合，為您打造純淨無負擔的醱酵美味。
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">快速導覽</h4>
+                    <ul class="space-y-2 text-sm font-light">
+                        <li><a href="#about" class="hover:text-white transition">品牌故事</a></li>
+                        <li><a href="#features" class="hover:text-white transition">核心優勢</a></li>
+                        <li><a href="#products" class="hover:text-white transition">系列產品</a></li>
+                        <li><a href="#recipe" class="hover:text-white transition">飲用提案</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">客服與支援</h4>
+                    <ul class="space-y-2 text-sm font-light">
+                        <li><a href="#" onclick="openModal('常見問題')" class="hover:text-white transition">常見問題 (FAQ)</a></li>
+                        <li><a href="#" onclick="openModal('配送與退換貨')" class="hover:text-white transition">配送與退換貨政策</a></li>
+                        <li><a href="#" onclick="openModal('隱私權政策')" class="hover:text-white transition">隱私權政策</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">關注我們</h4>
+                    <div class="flex space-x-4 mb-4">
+                        <a href="#" class="w-10 h-10 rounded-full glass-card flex items-center justify-center text-white hover:bg-brand-sun hover:text-brand-950 transition"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full glass-card flex items-center justify-center text-white hover:bg-brand-sun hover:text-brand-950 transition"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full glass-card flex items-center justify-center text-white hover:bg-brand-sun hover:text-brand-950 transition"><i class="fa-brands fa-line"></i></a>
+                    </div>
+                    <p class="text-xs text-brand-400">客服專線：0800-888-999</p>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-white/10 text-center text-xs text-brand-400">
+                &copy; 2026 忘憂禾麴 All Rights Reserved. Designed with high-saturation orange energy.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom Interactive Modal -->
+    <div id="actionModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="glass-dark max-w-md w-full mx-4 p-8 rounded-3xl shadow-2xl transform scale-95 transition-transform duration-300 relative" id="modalContainer">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-brand-200 hover:text-white text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="text-center space-y-4">
+                <div class="w-16 h-16 rounded-full bg-gradient-to-tr from-brand-bright to-brand-sun mx-auto flex items-center justify-center text-brand-950 text-2xl font-bold shadow-lg">
+                    <i class="fa-solid fa-gift"></i>
+                </div>
+                <h3 id="modalTitle" class="text-2xl font-black text-white">購買諮詢</h3>
+                <p id="modalDesc" class="text-brand-200 text-sm font-light">
+                    感謝您對「忘憂禾麴」的喜愛！目前此為展示體驗頁面，您可以直接聯繫我們的官方客服或留下聯絡方式索取試飲優惠。
+                </p>
+                <div class="pt-4 space-y-3">
+                    <input type="text" placeholder="請輸入您的手機號碼或 Email" class="w-full px-4 py-3 rounded-xl bg-brand-950/80 border border-brand-500/30 text-white placeholder-brand-400 focus:outline-none focus:border-brand-sun text-sm">
+                    <button onclick="handleModalSubmit()" class="w-full bg-gradient-to-r from-brand-bright to-brand-sun text-brand-950 font-bold py-3.5 rounded-xl shadow-lg hover:opacity-95 transition">
+                        確認送出
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AOS Library Script -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS animation
+        AOS.init({
+            once: true,
+            offset: 100,
+            duration: 800,
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-brand-950/90', 'backdrop-blur-md', 'shadow-lg');
+            } else {
+                navbar.classList.remove('bg-brand-950/90', 'backdrop-blur-md', 'shadow-lg');
+            }
+        });
+
+        // Modal control functions
+        function openModal(actionName) {
+            const modal = document.getElementById('actionModal');
+            const modalContainer = document.getElementById('modalContainer');
+            const modalTitle = document.getElementById('modalTitle');
+            
+            modalTitle.textContent = actionName;
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            modalContainer.classList.remove('scale-95');
+            modalContainer.classList.add('scale-100');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('actionModal');
+            const modalContainer = document.getElementById('modalContainer');
+            
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            modalContainer.classList.remove('scale-100');
+            modalContainer.classList.add('scale-95');
+        }
+
+        function handleModalSubmit() {
+            alert('感謝您的填寫！專人將會盡快與您聯繫。');
+            closeModal();
+        }
+
+        // Close modal on outside click
+        window.addEventListener('click', function(e) {
+            const modal = document.getElementById('actionModal');
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
